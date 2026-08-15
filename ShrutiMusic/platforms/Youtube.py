@@ -6,10 +6,6 @@ import yt_dlp
 from pyrogram.enums import MessageEntityType
 from pyrogram.types import Message
 from py_yt import VideosSearch, Playlist
-import aiohttp
-
-API_URL = os.environ.get("SHRUTI_API_URL", "https://api01.shrutibots.site")
-API_KEY = os.environ.get("SHRUTI_API_KEY", "ShrutiBots4AYJRhsZguh1YC3ICpG9")
 
 DOWNLOAD_DIR = "downloads"
 
@@ -38,33 +34,13 @@ async def download_song(link: str) -> str:
 
     os.makedirs(DOWNLOAD_DIR, exist_ok=True)
     
-    # Pehle check karo agar file already downloaded hai
+    # Check if already downloaded
     for file in os.listdir(DOWNLOAD_DIR):
         if file.startswith(video_id):
             existing_path = os.path.join(DOWNLOAD_DIR, file)
             if os.path.getsize(existing_path) > 0:
                 return existing_path
 
-    file_path = os.path.join(DOWNLOAD_DIR, f"{video_id}.mp3")
-
-    # 1. Pehle Shruti API se try karo
-    try:
-        async with aiohttp.ClientSession() as session:
-            async with session.get(
-                f"{API_URL}/download",
-                params={"url": video_id, "type": "audio", "api_key": API_KEY},
-                timeout=aiohttp.ClientTimeout(total=180)
-            ) as resp:
-                if resp.status == 200:
-                    with open(file_path, "wb") as f:
-                        async for chunk in resp.content.iter_chunked(131072):
-                            f.write(chunk)
-                    if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
-                        return file_path
-    except Exception:
-        pass
-
-    # 2. Agar API fail ho jaye, toh yt-dlp (cookies ke sath) se download karo
     try:
         ydl_opts = get_ydl_opts(is_video=False)
         loop = asyncio.get_event_loop()
@@ -73,7 +49,6 @@ async def download_song(link: str) -> str:
                 ydl.download([link])
         await loop.run_in_executor(None, download)
         
-        # Extension kuch bhi ho, video_id se file dhoond lo
         for file in os.listdir(DOWNLOAD_DIR):
             if file.startswith(video_id):
                 found_path = os.path.join(DOWNLOAD_DIR, file)
@@ -98,26 +73,6 @@ async def download_video(link: str) -> str:
             if os.path.getsize(existing_path) > 0:
                 return existing_path
 
-    file_path = os.path.join(DOWNLOAD_DIR, f"{video_id}.mp4")
-
-    # 1. Shruti API video download
-    try:
-        async with aiohttp.ClientSession() as session:
-            async with session.get(
-                f"{API_URL}/download",
-                params={"url": video_id, "type": "video", "api_key": API_KEY},
-                timeout=aiohttp.ClientTimeout(total=300)
-            ) as resp:
-                if resp.status == 200:
-                    with open(file_path, "wb") as f:
-                        async for chunk in resp.content.iter_chunked(131072):
-                            f.write(chunk)
-                    if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
-                        return file_path
-    except Exception:
-        pass
-
-    # 2. yt-dlp fallback for video
     try:
         ydl_opts = get_ydl_opts(is_video=True)
         loop = asyncio.get_event_loop()
