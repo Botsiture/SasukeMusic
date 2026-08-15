@@ -5,51 +5,54 @@ from pyrogram import filters
 
 load_dotenv()
 
-# Aapke main credentials
-API_ID = int(os.getenv("API_ID", "10658015"))
-API_HASH = os.getenv("API_HASH", "a0087bca748f86698c53d291c9e5b3af")
-BOT_TOKEN = os.getenv("BOT_TOKEN", "8126555519:AAElKkaaomDx0CRNIDnrgDiAHODxxvq82E0")
-OWNER_ID = int(os.getenv("OWNER_ID", "7657218453"))
-OWNER_USERNAME = os.getenv("OWNER_USERNAME", "WTF_WhyMeeh")
-BOT_USERNAME = os.getenv("BOT_USERNAME", "Uchihasibot")
+# --- SAFE CONFIGURATION LOADER ---
+# (os.getenv("VAR") or "default") ka matlab hai agar variable khali hai, 
+# toh default value use karo. Isse int() error nahi aayega.
+
+API_ID = int(os.getenv("API_ID") or "10658015")
+API_HASH = os.getenv("API_HASH") or "a0087bca748f86698c53d291c9e5b3af"
+BOT_TOKEN = os.getenv("BOT_TOKEN") or "8126555519:AAElKkaaomDx0CRNIDnrgDiAHODxxvq82E0"
+OWNER_ID = int(os.getenv("OWNER_ID") or "7657218453")
+OWNER_USERNAME = os.getenv("OWNER_USERNAME") or "WTF_WhyMeeh"
+BOT_USERNAME = os.getenv("BOT_USERNAME") or "Uchihasibot"
 
 # Database & Logger
-MONGO_DB_URI = os.getenv("MONGO_DB_URI", "mongodb+srv://macudini67_db_user:JTByODfwRj93MXWV@cluster0.hin0kat.mongodb.net/?appName=Cluster0")
-LOG_GROUP_ID = int(os.getenv("LOG_GROUP_ID", "-1002862997310"))
+MONGO_DB_URI = os.getenv("MONGO_DB_URI") or "mongodb+srv://macudini67_db_user:JTByODfwRj93MXWV@cluster0.hin0kat.mongodb.net/?appName=Cluster0"
+LOG_GROUP_ID = int(os.getenv("LOG_GROUP_ID") or "-1002862997310")
 HEROKU_APP_NAME = os.getenv("HEROKU_APP_NAME")
 HEROKU_API_KEY = os.getenv("HEROKU_API_KEY")
 
-UPSTREAM_REPO = os.getenv("UPSTREAM_REPO", "https://github.com/NoxxOP/ShrutiMusic")
-UPSTREAM_BRANCH = os.getenv("UPSTREAM_BRANCH", "main")
-GIT_TOKEN = os.getenv("GIT_TOKEN", None)
+UPSTREAM_REPO = os.getenv("UPSTREAM_REPO") or "https://github.com/NoxxOP/ShrutiMusic"
+UPSTREAM_BRANCH = os.getenv("UPSTREAM_BRANCH") or "main"
+GIT_TOKEN = os.getenv("GIT_TOKEN")
 
-SUPPORT_CHANNEL = os.getenv("SUPPORT_CHANNEL", "https://t.me/ShrutiBots")
-SUPPORT_GROUP = os.getenv("SUPPORT_GROUP", "https://t.me/ShrutiBotsSupport")
-INSTAGRAM = os.getenv("INSTAGRAM", "https://instagram.com/yaduwanshi_nand")
-YOUTUBE = os.getenv("YOUTUBE", "https://youtube.com/@NandEditz")
-GITHUB = os.getenv("GITHUB", "https://github.com/NoxxOP")
-DONATE = os.getenv("DONATE", "https://t.me/ShrutiBots/91")
-PRIVACY_LINK = os.getenv("PRIVACY_LINK", "https://graph.org/Privacy-Policy-05-01-30")
+SUPPORT_CHANNEL = os.getenv("SUPPORT_CHANNEL") or "https://t.me/ShrutiBots"
+SUPPORT_GROUP = os.getenv("SUPPORT_GROUP") or "https://t.me/ShrutiBotsSupport"
+INSTAGRAM = os.getenv("INSTAGRAM") or "https://instagram.com/yaduwanshi_nand"
+YOUTUBE = os.getenv("YOUTUBE") or "https://youtube.com/@NandEditz"
+GITHUB = os.getenv("GITHUB") or "https://github.com/NoxxOP"
+DONATE = os.getenv("DONATE") or "https://t.me/ShrutiBots/91"
+PRIVACY_LINK = os.getenv("PRIVACY_LINK") or "https://graph.org/Privacy-Policy-05-01-30"
 
-DURATION_LIMIT_MIN = int(os.getenv("DURATION_LIMIT", 300))
-PLAYLIST_FETCH_LIMIT = int(os.getenv("PLAYLIST_FETCH_LIMIT", 25))
+DURATION_LIMIT_MIN = int(os.getenv("DURATION_LIMIT") or "300")
+PLAYLIST_FETCH_LIMIT = int(os.getenv("PLAYLIST_FETCH_LIMIT") or "25")
 
-TG_AUDIO_FILESIZE_LIMIT = int(os.getenv("TG_AUDIO_FILESIZE_LIMIT", 104857600))
-TG_VIDEO_FILESIZE_LIMIT = int(os.getenv("TG_VIDEO_FILESIZE_LIMIT", 2145386496))
+TG_AUDIO_FILESIZE_LIMIT = int(os.getenv("TG_AUDIO_FILESIZE_LIMIT") or "104857600")
+TG_VIDEO_FILESIZE_LIMIT = int(os.getenv("TG_VIDEO_FILESIZE_LIMIT") or "2145386496")
 
-SPOTIFY_CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID", None)
-SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET", None)
+SPOTIFY_CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
+SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
 
 # String Sessions (Assistant)
-STRING1 = os.getenv("STRING_SESSION", "BAHvrjIAKoucFexG-a8wEEDO4bDZSp5Uci064mhze9c4d_rpdkdfuYmfWr6dqiRG90L0oQTHUmmKJymH8KnTyZNPZgbVLyPzIviJV9NQwWgj_DHg6c-MO9FxnMKuH8wRwycQKAvPxpUmkj2HOFOypygESzk-vZFz50lrXPkwwJpko6OAFXiajYzkQb1e6wB0QqnQMTfhoU520WfoDjRq-pywPOCeWpliPBERfsQrnI4pjuRxVmxP8bnNzK9J5TjRZ4v8gQ6mBzuCavk5AYGnq8euRmEEq5IAuINYCc0wMB4JN6TFPClyl6yYhAl5lF1hBnIjnN9qaQEYRG7tJRnltBEgyuVeswAAAAIJk9ZLAA")
-STRING2 = os.getenv("STRING_SESSION2", None)
-STRING3 = os.getenv("STRING_SESSION3", None)
-STRING4 = os.getenv("STRING_SESSION4", None)
-STRING5 = os.getenv("STRING_SESSION5", None)
+STRING1 = os.getenv("STRING_SESSION") or "BAHvrjIAKoucFexG-a8wEEDO4bDZSp5Uci064mhze9c4d_rpdkdfuYmfWr6dqiRG90L0oQTHUmmKJymH8KnTyZNPZgbVLyPzIviJV9NQwWgj_DHg6c-MO9FxnMKuH8wRwycQKAvPxpUmkj2HOFOypygESzk-vZFz50lrXPkwwJpko6OAFXiajYzkQb1e6wB0QqnQMTfhoU520WfoDjRq-pywPOCeWpliPBERfsQrnI4pjuRxVmxP8bnNzK9J5TjRZ4v8gQ6mBzuCavk5AYGnq8euRmEEq5IAuINYCc0wMB4JN6TFPClyl6yYhAl5lF1hBnIjnN9qaQEYRG7tJRnltBEgyuVeswAAAAIJk9ZLAA"
+STRING2 = os.getenv("STRING_SESSION2")
+STRING3 = os.getenv("STRING_SESSION3")
+STRING4 = os.getenv("STRING_SESSION4")
+STRING5 = os.getenv("STRING_SESSION5")
 
-AUTO_LEAVING_ASSISTANT = bool(os.getenv("AUTO_LEAVING_ASSISTANT", False))
+AUTO_LEAVING_ASSISTANT = bool(os.getenv("AUTO_LEAVING_ASSISTANT") or False)
 
-START_IMG_URL = os.getenv("START_IMG_URL", "https://files.catbox.moe/7q8bfg.jpg")
+START_IMG_URL = os.getenv("START_IMG_URL") or "https://files.catbox.moe/7q8bfg.jpg"
 PING_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
 PLAYLIST_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
 STATS_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
