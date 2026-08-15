@@ -1,11 +1,10 @@
 import os
 import re
 from dotenv import load_dotenv
-from pyrogram import filters
 
 load_dotenv()
 
-# Safe integer loader function
+# Safe integer loader function - Ye error nahi aane dega agar value khali hogi
 def get_env_int(key, default):
     val = os.getenv(key)
     try:
@@ -13,6 +12,7 @@ def get_env_int(key, default):
     except:
         return default
 
+# Basic Bot Configs
 API_ID = get_env_int("API_ID", 10658015)
 API_HASH = os.getenv("API_HASH") or "a0087bca748f86698c53d291c9e5b3af"
 BOT_TOKEN = os.getenv("BOT_TOKEN") or "8126555519:AAElKkaaomDx0CRNIDnrgDiAHODxxvq82E0"
@@ -23,13 +23,15 @@ BOT_USERNAME = os.getenv("BOT_USERNAME") or "Uchihasibot"
 # Database & Logger
 MONGO_DB_URI = os.getenv("MONGO_DB_URI") or "mongodb+srv://macudini67_db_user:JTByODfwRj93MXWV@cluster0.hin0kat.mongodb.net/?appName=Cluster0"
 LOG_GROUP_ID = get_env_int("LOG_GROUP_ID", -1002862997310)
+
+# Heroku & Git
 HEROKU_APP_NAME = os.getenv("HEROKU_APP_NAME")
 HEROKU_API_KEY = os.getenv("HEROKU_API_KEY")
-
-UPSTREAM_REPO = os.getenv("UPSTREAM_REPO") or "https://github.com/NoxxOP/ShrutiMusic"
+UPSTREAM_REPO = os.getenv("UPSTREAM_REPO") or "https://github.com/Botsiture/SasukeMusic"
 UPSTREAM_BRANCH = os.getenv("UPSTREAM_BRANCH") or "main"
 GIT_TOKEN = os.getenv("GIT_TOKEN")
 
+# Support & Links
 SUPPORT_CHANNEL = os.getenv("SUPPORT_CHANNEL") or "https://t.me/ShrutiBots"
 SUPPORT_GROUP = os.getenv("SUPPORT_GROUP") or "https://t.me/ShrutiBotsSupport"
 INSTAGRAM = os.getenv("INSTAGRAM") or "https://instagram.com/yaduwanshi_nand"
@@ -38,14 +40,17 @@ GITHUB = os.getenv("GITHUB") or "https://github.com/NoxxOP"
 DONATE = os.getenv("DONATE") or "https://t.me/ShrutiBots/91"
 PRIVACY_LINK = os.getenv("PRIVACY_LINK") or "https://graph.org/Privacy-Policy-05-01-30"
 
+# Limits
 DURATION_LIMIT_MIN = get_env_int("DURATION_LIMIT", 300)
 PLAYLIST_FETCH_LIMIT = get_env_int("PLAYLIST_FETCH_LIMIT", 25)
 TG_AUDIO_FILESIZE_LIMIT = get_env_int("TG_AUDIO_FILESIZE_LIMIT", 104857600)
 TG_VIDEO_FILESIZE_LIMIT = get_env_int("TG_VIDEO_FILESIZE_LIMIT", 2145386496)
 
+# Spotify Config
 SPOTIFY_CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
 SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
 
+# Sessions
 STRING1 = os.getenv("STRING_SESSION") or "BAHvrjIAKoucFexG-a8wEEDO4bDZSp5Uci064mhze9c4d_rpdkdfuYmfWr6dqiRG90L0oQTHUmmKJymH8KnTyZNPZgbVLyPzIviJV9NQwWgj_DHg6c-MO9FxnMKuH8wRwycQKAvPxpUmkj2HOFOypygESzk-vZFz50lrXPkwwJpko6OAFXiajYzkQb1e6wB0QqnQMTfhoU520WfoDjRq-pywPOCeWpliPBERfsQrnI4pjuRxVmxP8bnNzK9J5TjRZ4v8gQ6mBzuCavk5AYGnq8euRmEEq5IAuINYCc0wMB4JN6TFPClyl6yYhAl5lF1hBnIjnN9qaQEYRG7tJRnltBEgyuVeswAAAAIJk9ZLAA"
 STRING2 = os.getenv("STRING_SESSION2")
 STRING3 = os.getenv("STRING_SESSION3")
@@ -54,6 +59,7 @@ STRING5 = os.getenv("STRING_SESSION5")
 
 AUTO_LEAVING_ASSISTANT = bool(os.getenv("AUTO_LEAVING_ASSISTANT") or False)
 
+# Images
 START_IMG_URL = os.getenv("START_IMG_URL") or "https://files.catbox.moe/7q8bfg.jpg"
 PING_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
 PLAYLIST_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
@@ -67,7 +73,6 @@ SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
 SPOTIFY_ALBUM_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
 SPOTIFY_PLAYLIST_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
 
-BANNED_USERS = filters.user()
 adminlist = {}
 lyrical = {}
 votemode = {}
