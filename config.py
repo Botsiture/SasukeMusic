@@ -5,15 +5,17 @@ from pyrogram import filters
 
 load_dotenv()
 
-API_ID = int(os.getenv("API_ID"))
-API_HASH = os.getenv("API_HASH")
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-OWNER_ID = int(os.getenv("OWNER_ID", None))
+# Aapke main credentials
+API_ID = int(os.getenv("API_ID", "10658015"))
+API_HASH = os.getenv("API_HASH", "a0087bca748f86698c53d291c9e5b3af")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "8126555519:AAElKkaaomDx0CRNIDnrgDiAHODxxvq82E0")
+OWNER_ID = int(os.getenv("OWNER_ID", "7657218453"))
 OWNER_USERNAME = os.getenv("OWNER_USERNAME", "WTF_WhyMeeh")
-BOT_USERNAME = os.getenv("BOT_USERNAME", "ShrutixMusicBot")
+BOT_USERNAME = os.getenv("BOT_USERNAME", "Uchihasibot")
 
-MONGO_DB_URI = os.getenv("MONGO_DB_URI", None)
-LOG_GROUP_ID = int(os.getenv("LOG_GROUP_ID", None))
+# Database & Logger
+MONGO_DB_URI = os.getenv("MONGO_DB_URI", "mongodb+srv://macudini67_db_user:JTByODfwRj93MXWV@cluster0.hin0kat.mongodb.net/?appName=Cluster0")
+LOG_GROUP_ID = int(os.getenv("LOG_GROUP_ID", "-1002862997310"))
 HEROKU_APP_NAME = os.getenv("HEROKU_APP_NAME")
 HEROKU_API_KEY = os.getenv("HEROKU_API_KEY")
 
@@ -38,7 +40,8 @@ TG_VIDEO_FILESIZE_LIMIT = int(os.getenv("TG_VIDEO_FILESIZE_LIMIT", 2145386496))
 SPOTIFY_CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID", None)
 SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET", None)
 
-STRING1 = os.getenv("STRING_SESSION", None)
+# String Sessions (Assistant)
+STRING1 = os.getenv("STRING_SESSION", "BAHvrjIAKoucFexG-a8wEEDO4bDZSp5Uci064mhze9c4d_rpdkdfuYmfWr6dqiRG90L0oQTHUmmKJymH8KnTyZNPZgbVLyPzIviJV9NQwWgj_DHg6c-MO9FxnMKuH8wRwycQKAvPxpUmkj2HOFOypygESzk-vZFz50lrXPkwwJpko6OAFXiajYzkQb1e6wB0QqnQMTfhoU520WfoDjRq-pywPOCeWpliPBERfsQrnI4pjuRxVmxP8bnNzK9J5TjRZ4v8gQ6mBzuCavk5AYGnq8euRmEEq5IAuINYCc0wMB4JN6TFPClyl6yYhAl5lF1hBnIjnN9qaQEYRG7tJRnltBEgyuVeswAAAAIJk9ZLAA")
 STRING2 = os.getenv("STRING_SESSION2", None)
 STRING3 = os.getenv("STRING_SESSION3", None)
 STRING4 = os.getenv("STRING_SESSION4", None)
