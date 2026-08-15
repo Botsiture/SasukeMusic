@@ -1,6 +1,7 @@
 import os
 import re
 from dotenv import load_dotenv
+from pyrogram import filters
 
 load_dotenv()
 
@@ -73,6 +74,8 @@ SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
 SPOTIFY_ALBUM_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
 SPOTIFY_PLAYLIST_IMG_URL = "https://files.catbox.moe/eehxb4.jpg"
 
+# Lists & Dictionaries
+BANNED_USERS = filters.user()
 adminlist = {}
 lyrical = {}
 votemode = {}
