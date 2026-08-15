@@ -22,6 +22,7 @@
 
 import asyncio
 import importlib
+import cookie
 from pyrogram import idle
 from pyrogram.types import BotCommand
 from pytgcalls.exceptions import NoActiveGroupCall
